@@ -58,7 +58,9 @@ actions = [
 
 In the example shown above, all directives in `action_a` will be executed 3 times sequentially, and then the only directive in `action_b` will be executed once.
 
-All available directives' type definitions are as follows (but you don't need to understand them).
+All available directives' type definitions are as follows (but you don't need to understand them, so I hide them in `<details>`).
+
+<details>
 
 ```python
 class SetActiveStateDirective(TypedDict):
@@ -87,6 +89,8 @@ class SleepDirective(TypedDict):
     type: Literal["sleep"]
     time_ms: float
 ```
+
+</details>
 
 #### `SetActiveStateDirective`
 
