@@ -12,6 +12,12 @@ python -m pip install -r requirements.txt
 
 ## Usage
 
+```bash
+git clone https://github.com/XieJiSS/automated-window-control.git
+cd automated-window-control
+python -m pip install -r requirements.txt
+```
+
 ### 1. Specify the Target Window
 
 You can specify the target window by providing its title. Or, you can specify a position, and the topmost window at that position will become the target window.
