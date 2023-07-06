@@ -16,6 +16,8 @@ python -m pip install -r requirements.txt
 git clone https://github.com/XieJiSS/automated-window-control.git
 cd automated-window-control
 python -m pip install -r requirements.txt
+# modify config.py and actions.py, and then:
+python main.py
 ```
 
 ### 1. Specify the Target Window
