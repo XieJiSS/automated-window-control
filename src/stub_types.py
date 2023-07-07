@@ -1,5 +1,5 @@
 import sys
-from typing import List, Literal
+from typing import List, Literal, Union
 
 if sys.version_info < (3, 11):
     from typing_extensions import TypedDict, NotRequired
@@ -29,8 +29,10 @@ class MouseDirective(TypedDict):
     method: Literal["move", "move_to", "click_at", "click"]
     # pos: for move_to and click_at
     pos: NotRequired[
-        List[int]
-        | Literal["center", "top_left", "top_right", "bottom_left", "bottom_right"]
+        Union[
+            List[int],
+            Literal["center", "top_left", "top_right", "bottom_left", "bottom_right"],
+        ]
     ]
     # offset: for move
     offset: NotRequired[List[int]]
@@ -239,7 +241,7 @@ KEYBOARD_KEYS = Literal[
 class KeyboardDirective(TypedDict):
     type: Literal["keyboard"]
     method: Literal["key_down", "key_up", "type", "delete", "hotkey"]
-    key: KEYBOARD_KEYS | List[KEYBOARD_KEYS]
+    key: Union[KEYBOARD_KEYS, List[KEYBOARD_KEYS]]
 
 
 class SleepDirective(TypedDict):
@@ -247,11 +249,11 @@ class SleepDirective(TypedDict):
     time_ms: float
 
 
-AllDirective = (
-    MouseDirective | KeyboardDirective | SetActiveStateDirective | SleepDirective
-)
+AllDirective = Union[
+    MouseDirective, KeyboardDirective, SetActiveStateDirective, SleepDirective
+]
 
 
 class Action(TypedDict):
-    directive: AllDirective | List[AllDirective]
-    exec_count: NotRequired[int | Literal["inf"]]
+    directive: Union[AllDirective, List[AllDirective]]
+    exec_count: NotRequired[Union[int, Literal["inf"]]]

@@ -75,13 +75,16 @@ class SetActiveStateDirective(TypedDict):
     type: Literal["set_active_state"]
     state: Literal["active", "inactive", "front_but_inactive"]
 
+
 class MouseDirective(TypedDict):
     type: Literal["mouse"]
     method: Literal["move", "move_to", "click_at", "click"]
     # pos: for move_to and click_at
     pos: NotRequired[
-        List[int]
-        | Literal["center", "top_left", "top_right", "bottom_left", "bottom_right"]
+        Union[
+            List[int],
+            Literal["center", "top_left", "top_right", "bottom_left", "bottom_right"],
+        ]
     ]
     # offset: for move
     offset: NotRequired[List[int]]
@@ -91,7 +94,8 @@ class MouseDirective(TypedDict):
 class KeyboardDirective(TypedDict):
     type: Literal["keyboard"]
     method: Literal["key_down", "key_up", "type", "delete", "hotkey"]
-    key: KEYBOARD_KEYS | List[KEYBOARD_KEYS]
+    key: Union[KEYBOARD_KEYS, List[KEYBOARD_KEYS]]
+
 
 class SleepDirective(TypedDict):
     type: Literal["sleep"]
